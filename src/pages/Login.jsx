@@ -37,10 +37,7 @@ const Login = () => {
       </form>
       <p className="mt-4 text-gray-400">
         Don't have an account?{" "}
-        <Link
-          to="/signup"
-          className="text-primaryPurple hover:text-secondaryPurple transition duration-300"
-        >
+        <Link to="/signup" className="text-primaryPurple hover:underline">
           Sign Up
         </Link>
       </p>

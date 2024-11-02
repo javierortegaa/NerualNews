@@ -1,50 +1,47 @@
-import { auth } from "../configuration.tsx";
+import { auth } from "../configuration";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { addNewUser } from "./firebase_fs.tsx";
+import { addNewUser } from "./firebase_fs";
 
-export const login = async (email: string, password: string) => {
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      return "Success";
-    })
-    .catch((error) => {
-      const errorMessage = error.message;
-      throw errorMessage;
-    });
+export const login = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    return "Success";
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
-export const signup = async (
-  email: string,
-  password: string,
-  username: string
-) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      addNewUser(email, { username: username });
-      return "Success";
-    })
-    .catch((error) => {
-      const errorMessage = error.message;
-      throw errorMessage;
-    });
+export const signup = async (email, password, username) => {
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    await addNewUser(email, { username: username });
+    return "Success";
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 export const logout = async () => {
-  return auth.signOut();
+  try {
+    await auth.signOut();
+    return "Success";
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      unsubscribe();
       if (user) {
         resolve(user);
       } else {
-        resolve(null);
+        reject(new Error("No user is signed in"));
       }
-      unsubscribe();
     });
   });
 };

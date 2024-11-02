@@ -4,12 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        primaryPurple: "#8A2BE2",
-        secondaryPurple: "#6A0DC8",
-        background: "#121212",
-        headfooter: "#1E1E1E",
-        textColor: "#EAEAEA",
-        accent: "#FF6F61",
+        "paper-bg": "#f5f5dc",
+        "text-black": "#333333",
+        "border-black": "#1a1a1a",
+      },
+      fontFamily: {
+        serif: ["Times New Roman", "Georgie", "serif"],
+      },
+      spacing: {
+        container: "1200px",
       },
     },
   },

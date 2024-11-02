@@ -1,27 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Hero from "./pages/Hero";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+import ReactDOM from "react-dom";
+import MainLayout from "./components/MainLayout";
+import "./index.css";
 
-const App = () => {
+ReactDOM.render(<App />, document.getElementById("root"));
+
+function App() {
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen bg-background text-textColor">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Hero />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <div className="bg-paper-bg min-h-screen">
+      <MainLayout />
+    </div>
   );
-};
+}
 
 export default App;

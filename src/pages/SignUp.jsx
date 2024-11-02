@@ -63,11 +63,8 @@ const SignUp = () => {
       </form>
       <p className="mt-4 text-gray-400">
         Already have an account?{" "}
-        <Link
-          to="/login"
-          className="text-primaryPurple hover:text-secondaryPurple transition duration-300"
-        >
-          Login
+        <Link to="/login" className="text-primaryPurple hover:underline">
+          Log In
         </Link>
       </p>
     </div>
