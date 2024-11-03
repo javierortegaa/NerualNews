@@ -12,7 +12,7 @@ export const getUserData = async (email) => {
   return docRef.data();
 };
 
-export const getArticles = async (page = 1) => {
+export const getArticles = async (page = 1, tag="") => {
   const articles = [];
   const articlesRef = collection(fs, "articles");
   const articlesPerPage = 8;
@@ -24,10 +24,16 @@ export const getArticles = async (page = 1) => {
     orderBy("date", "desc"),
     limit(articlesPerPage)
   );
-
+  if (tag!=="") {
+    q = query(articlesRef, where("tags", "array-contains", tag), where("summarized", "==", true), orderBy("date", "desc"), limit(articlesPerPage));
+  }
   // Adjust the query for pagination
   if (page > 1) {
-    const lastDocSnapshot = await getDocs(query(articlesRef, where("summarized", "==", true), orderBy("date", "desc"), limit((page - 1) * articlesPerPage)));
+    if (tag==="") {
+      const lastDocSnapshot = await getDocs(query(articlesRef, where("summarized", "==", true), orderBy("date", "desc"), limit((page - 1) * articlesPerPage)));
+    }else{
+      const lastDocSnapshot = await getDocs(query(articlesRef, where("tags", "array-contains", tag), where("summarized", "==", true), orderBy("date", "desc"), limit((page - 1) * articlesPerPage)));
+    }
     const lastDoc = lastDocSnapshot.docs[lastDocSnapshot.docs.length - 1];
     if (lastDoc) {
       q = query(q, startAfter(lastDoc));
