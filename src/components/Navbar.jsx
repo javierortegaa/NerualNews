@@ -1,25 +1,16 @@
 // Navbar.jsx
 const Navbar = () => (
-  <nav className="flex justify-center items-center p-2 border-b-2 border-border-black text-sm space-x-4">
-    {[
-      "INTEL",
-      "NVIDIA",
-      "DELL",
-      "APPLE",
-      "LLM'S",
-      "AI",
-      "GLOBAL",
-      "ECONOMIC",
-      "GOOGLE",
-      "ALL",
-    ].map((item, index) => (
-      <span
-        key={index}
-        className="hover:font-bold hover:text-gray-700 transition-all duration-200 cursor-pointer"
-      >
-        {item}
-      </span>
-    ))}
+  <nav className="flex flex-wrap justify-center md:justify-center items-center p-2 border-b-2 border-border-black text-xs md:text-sm space-x-2 md:space-x-4">
+    <span className="hover:font-bold transition duration-300">INTEL</span>
+    <span className="hover:font-bold transition duration-300">NVIDIA</span>
+    <span className="hover:font-bold transition duration-300">DELL</span>
+    <span className="hover:font-bold transition duration-300">APPLE</span>
+    <span className="hover:font-bold transition duration-300">LLM'S</span>
+    <span className="hover:font-bold transition duration-300">AI</span>
+    <span className="hover:font-bold transition duration-300">GLOBAL</span>
+    <span className="hover:font-bold transition duration-300">ECONOMIC</span>
+    <span className="hover:font-bold transition duration-300">GOOGLE</span>
+    <span className="hover:font-bold transition duration-300">ALL</span>
   </nav>
 );
 

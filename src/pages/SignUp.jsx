@@ -18,7 +18,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-20">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-backgroundColor py-20">
       <h2 className="text-3xl font-bold text-primaryPurple">Sign Up</h2>
       <form className="mt-6 w-full max-w-sm" onSubmit={handleSignUp}>
         <div className="mb-4">
@@ -29,7 +29,7 @@ const SignUp = () => {
             type="text"
             id="username"
             required
-            className="w-full p-3 bg-gray-800 border border-primaryPurple rounded focus:outline-none focus:ring-2 focus:ring-primaryPurple"
+            className="w-full p-3 bg-inputBackground border border-primaryPurple rounded focus:outline-none focus:ring-2 focus:ring-primaryPurple"
           />
         </div>
         <div className="mb-4">
@@ -40,7 +40,7 @@ const SignUp = () => {
             type="email"
             id="email"
             required
-            className="w-full p-3 bg-gray-800 border border-primaryPurple rounded focus:outline-none focus:ring-2 focus:ring-primaryPurple"
+            className="w-full p-3 bg-inputBackground border border-primaryPurple rounded focus:outline-none focus:ring-2 focus:ring-primaryPurple"
           />
         </div>
         <div className="mb-4">
@@ -51,7 +51,7 @@ const SignUp = () => {
             type="password"
             id="password"
             required
-            className="w-full p-3 bg-gray-800 border border-primaryPurple rounded focus:outline-none focus:ring-2 focus:ring-primaryPurple"
+            className="w-full p-3 bg-inputBackground border border-primaryPurple rounded focus:outline-none focus:ring-2 focus:ring-primaryPurple"
           />
         </div>
         <button
@@ -61,7 +61,7 @@ const SignUp = () => {
           Sign Up
         </button>
       </form>
-      <p className="mt-4 text-gray-400">
+      <p className="mt-4 text-textColor">
         Already have an account?{" "}
         <Link to="/login" className="text-primaryPurple hover:underline">
           Log In
