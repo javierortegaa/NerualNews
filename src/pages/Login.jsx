@@ -28,6 +28,15 @@ const Login = () => {
             Login
           </button>
         </form>
+        <p className="text-center mt-4">
+          Don't have an account?{" "}
+          <a
+            href="/signup"
+            className="font-bold hover:underline transition duration-300"
+          >
+            Sign up
+          </a>
+        </p>
       </div>
     </div>
   );
