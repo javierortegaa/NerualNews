@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import Header from "./Header";
 import Navbar from "./NavBar";
 import NewsSection from "./NewsSection";
-
+import { getArticles } from "../services/firebase_fs";
 const MainLayout = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [articles, setArticles] = useState([]);
   const articlesPerPage = 4;
   const totalArticles = 10;
   const totalPages = Math.ceil(totalArticles / articlesPerPage);
@@ -13,18 +14,9 @@ const MainLayout = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
-  const renderArticles = () => {
-    const startIndex = (currentPage - 1) * articlesPerPage;
-    const endIndex = startIndex + articlesPerPage;
-    const articles = [];
-
-    for (let i = startIndex; i < endIndex; i++) {
-      articles.push(<NewsSection key={i} title={`Main Article ${i + 1}`} />);
-    }
-
-    return articles;
-  };
+  useState(() => {
+    getArticles().then((articles) => setArticles(articles));
+  },[]);
 
   return (
     <div className="max-w-container mx-auto bg-paper-bg">
@@ -33,7 +25,10 @@ const MainLayout = () => {
       <div className="flex flex-col md:flex-row p-4">
         {/* Main content area */}
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 md:pr-4">
-          {renderArticles()}
+          {articles.map((article, index) => {
+            {console.log(article)}
+            return (<NewsSection key={index} title={article.headline} body={article.summary} date={article.date} tags={article.tags}/>);
+          })}
         </div>
       </div>
 

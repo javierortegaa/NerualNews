@@ -1,11 +1,8 @@
 // NewsSection.jsx
-const NewsSection = ({ title }) => (
+const NewsSection = ({ title, body, date, tags, }) => (
   <div className="border border-border-black p-4 rounded-md">
     <h2 className="text-lg font-bold mb-2">{title}</h2>
-    <p className="text-sm">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-      imperdiet.
-    </p>
+    <p className="text-sm">{body}</p>
   </div>
 );
 
