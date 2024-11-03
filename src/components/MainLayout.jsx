@@ -39,7 +39,7 @@ const MainLayout = () => {
 
       {/* Footer */}
       <footer className="flex flex-col sm:flex-row justify-between items-center border-t-2 border-border-black p-4 text-sm space-y-2 sm:space-y-0">
-        <span>ABOUT</span>
+        <span>DEVPOST</span>
         <span className="order-last sm:order-none">
           {Array.from({ length: totalPages }, (_, index) => (
             <button
