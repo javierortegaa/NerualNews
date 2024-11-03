@@ -11,8 +11,8 @@ function App() {
   return (
     <Router>
       <div className="bg-paper-bg min-h-screen">
-        <MainLayout />
         <Routes>
+          <Route path="/" element={<MainLayout />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
