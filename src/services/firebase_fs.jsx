@@ -1,4 +1,15 @@
-import { collection, getDoc, doc, setDoc, getDocs, query, limit, startAfter, where, orderBy } from "firebase/firestore";
+import {
+  collection,
+  getDoc,
+  doc,
+  setDoc,
+  getDocs,
+  query,
+  limit,
+  startAfter,
+  where,
+  orderBy,
+} from "firebase/firestore";
 import { fs } from "../configuration";
 
 export const addNewUser = async (email, data) => {
@@ -12,11 +23,11 @@ export const getUserData = async (email) => {
   return docRef.data();
 };
 
-export const getArticles = async (page = 1, tag="") => {
+export const getArticles = async (page = 1, tag = "") => {
   const articles = [];
   const articlesRef = collection(fs, "articles");
   const articlesPerPage = 8;
-  
+
   // Create a query with filters: sorted by date (descending) and summarized = true
   let q = query(
     articlesRef,
@@ -24,15 +35,37 @@ export const getArticles = async (page = 1, tag="") => {
     orderBy("date", "desc"),
     limit(articlesPerPage)
   );
-  if (tag!=="") {
-    q = query(articlesRef, where("tags", "array-contains", tag), where("summarized", "==", true), orderBy("date", "desc"), limit(articlesPerPage));
+  if (tag !== "") {
+    q = query(
+      articlesRef,
+      where("tags", "array-contains", tag),
+      where("summarized", "==", true),
+      orderBy("date", "desc"),
+      limit(articlesPerPage)
+    );
   }
   // Adjust the query for pagination
   if (page > 1) {
-    if (tag==="") {
-      const lastDocSnapshot = await getDocs(query(articlesRef, where("summarized", "==", true), orderBy("date", "desc"), limit((page - 1) * articlesPerPage)));
-    }else{
-      const lastDocSnapshot = await getDocs(query(articlesRef, where("tags", "array-contains", tag), where("summarized", "==", true), orderBy("date", "desc"), limit((page - 1) * articlesPerPage)));
+    let lastDocSnapshot;
+    if (tag === "") {
+      lastDocSnapshot = await getDocs(
+        query(
+          articlesRef,
+          where("summarized", "==", true),
+          orderBy("date", "desc"),
+          limit((page - 1) * articlesPerPage)
+        )
+      );
+    } else {
+      lastDocSnapshot = await getDocs(
+        query(
+          articlesRef,
+          where("tags", "array-contains", tag),
+          where("summarized", "==", true),
+          orderBy("date", "desc"),
+          limit((page - 1) * articlesPerPage)
+        )
+      );
     }
     const lastDoc = lastDocSnapshot.docs[lastDocSnapshot.docs.length - 1];
     if (lastDoc) {
