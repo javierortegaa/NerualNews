@@ -15,7 +15,7 @@ export const getUserData = async (email) => {
 export const getArticles = async (page = 1) => {
   const articles = [];
   const articlesRef = collection(fs, "articles");
-  const articlesPerPage = 10;
+  const articlesPerPage = 8;
   
   // Create a query with filters: sorted by date (descending) and summarized = true
   let q = query(

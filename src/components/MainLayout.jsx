@@ -13,9 +13,10 @@ const MainLayout = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    getArticles(page).then((articles) => setArticles(articles));
   };
   useState(() => {
-    getArticles().then((articles) => setArticles(articles));
+    getArticles(currentPage).then((articles) => setArticles(articles));
   },[]);
 
   return (
